@@ -37,7 +37,7 @@ const Login = () => {
                     Log In
                 </Button>
             </Form>
-            <Link to='/register' className='text-primary text-decoration-none' onClick={navigateRegister}>Create new account</Link>
+            <Link to='/register' className='text-primary text-decoration-none text-center' onClick={navigateRegister}>Create new account</Link>
         </div>
     );
 };
