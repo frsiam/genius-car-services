@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import SocialLogin from './SocialLogin/SocialLogin';
 
 const Register = () => {
     const [
@@ -51,6 +52,7 @@ const Register = () => {
                 <button type="submit" className="btn btn-primary w-100 text-center">Register</button>
             </form>
             <Link to='/login' className='text-primary text-decoration-none' onClick={navigateLogin}>I have an Account</Link>
+            <SocialLogin></SocialLogin>
         </div>
     );
 };
