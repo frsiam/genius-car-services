@@ -8,12 +8,10 @@ const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
     const navigate = useNavigate()
-    let Error;
 
+    let Error;
     if (error || error1) {
-        Error = <div>
-            <p className='text-danger'>Error: {error?.message} {error1?. message}</p>
-        </div>
+        Error = <p className='text-danger'>Error: {error?.message} {error1?. message}</p>
     }
     if (loading || loading1) {
         return <p>Loading...</p>;
