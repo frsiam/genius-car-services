@@ -10,6 +10,7 @@ const Login = () => {
     const passwordRef = useRef('')
     const navigate = useNavigate()
     const location = useLocation()
+
     const from = location.state?.from?.pathname || '/';
 
     let errorElement;
@@ -24,6 +25,7 @@ const Login = () => {
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
     if (user) {
+        console.log(user)
         navigate(from, { replace: true });
     }
     if (error) {
@@ -34,8 +36,6 @@ const Login = () => {
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         signInWithEmailAndPassword(email, password)
-
-        console.log(email, password)
     }
 
     const navigateRegister = event => {
