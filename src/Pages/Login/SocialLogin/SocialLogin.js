@@ -9,13 +9,13 @@ const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
     const navigate = useNavigate()
-    if(loading || loading1){
+    if (loading || loading1) {
         return <Loading></Loading>
     }
 
     let Error;
     if (error || error1) {
-        Error = <p className='text-danger'>Error: {error?.message} {error1?. message}</p>
+        Error = <p className='text-danger'>Error: {error?.message} {error1?.message}</p>
     }
     if (loading || loading1) {
         return <p>Loading...</p>;
@@ -44,7 +44,7 @@ const SocialLogin = () => {
                 <button className='btn btn-primary w-75 d-block mx-auto my-2'>
                     Facebook Sign In
                 </button>
-                <button onClick={()=>signInWithGithub()} className='btn btn-dark w-75 d-block mx-auto'>
+                <button onClick={() => signInWithGithub()} className='btn btn-dark w-75 d-block mx-auto'>
                     Github Sign In
                 </button>
             </div>
