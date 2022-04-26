@@ -4,6 +4,7 @@ import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import SocialLogin from './SocialLogin/SocialLogin';
 import Loading from '../Shared/Loading/Loading';
+import PageTitle from '../Shared/PageTitle/PageTitle';
 
 const Register = () => {
     const [agree, setAgree] = useState(false)
@@ -41,6 +42,7 @@ const Register = () => {
     }
     return (
         <div className='container w-50 mx-auto my-5 pb-5'>
+            <PageTitle title='Register'></PageTitle>
             <h2 className='text-primary text-center'>Please Register</h2>
             <form onSubmit={handleRegister}>
                 <div className="mb-3">
