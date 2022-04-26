@@ -13,7 +13,7 @@ const Header = () => {
     }
     return (
         <>
-            <Navbar sticky='top' collapseOnSelect expand="lg" bg="primary" variant="dark">
+            <Navbar sticky='top' collapseOnSelect expand="md" bg="primary" variant="dark">
                 <Container>
                     <Navbar.Brand as={Link} to="/">
                         <img height={30} src={logo} alt="" />
