@@ -29,7 +29,6 @@ const Login = () => {
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
     if (user) {
-        console.log(user)
         navigate(from, { replace: true });
     }
     if (error) {
@@ -54,7 +53,7 @@ const Login = () => {
             await sendPasswordResetEmail(email)
             toast('sent email')
         }
-        else{
+        else {
             toast('Please enter your email !')
         }
     }
