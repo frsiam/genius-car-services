@@ -10,7 +10,11 @@ const Orders = () => {
         const getOrders = async () => {
             const email = user.email;
             const url = `http://localhost:4000/orders?email=${email}`;
-            const { data } = await axios.get(url);
+            const { data } = await axios.get(url, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             setOrders(data);
         }
         getOrders();
