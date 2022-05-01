@@ -5,6 +5,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import SocialLogin from './SocialLogin/SocialLogin';
 import Loading from '../Shared/Loading/Loading';
 import PageTitle from '../Shared/PageTitle/PageTitle';
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
     const [agree, setAgree] = useState(false)
@@ -15,16 +16,17 @@ const Register = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [token] = useToken(user);
 
     const navigate = useNavigate()
 
     const navigateLogin = () => {
         navigate('/login')
     }
-    if (user) {
-        console.log('user',user);
+    if (token) {
+        navigate('/home');
     }
-    if(loading || updating){
+    if (loading || updating) {
         return <Loading></Loading>
     }
 
@@ -36,9 +38,8 @@ const Register = () => {
         // const agree = event.target.terms.checked;
 
         await createUserWithEmailAndPassword(email, password)
-        await updateProfile({ displayName:name });
+        await updateProfile({ displayName: name });
         console.log('Updated profile');
-        navigate('/home')
     }
     return (
         <div className='container w-50 mx-auto my-5 pb-5'>

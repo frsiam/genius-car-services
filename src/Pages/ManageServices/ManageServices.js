@@ -6,7 +6,7 @@ const ManageServices = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('are you sure?')
         if (proceed) {
-            const url = `http://localhost:4000/service/${id}`;
+            const url = `https://polar-badlands-98264.herokuapp.com/service/${id}`;
             fetch(url, {
                 method: 'delete'
             })
@@ -19,8 +19,8 @@ const ManageServices = () => {
         }
     }
     return (
-        <div>
-            <h1>Manage Your Services</h1>
+        <div className='container text-center my-5'>
+            <h1 className='my-4'>Manage Your Services</h1>
             {
                 services.map(service => <div key={service._id}>
                     <h5>{service.name}

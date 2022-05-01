@@ -1,27 +1,40 @@
-import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import axiosPrivate from '../../api/axiosPrivate';
 import auth from '../../firebase.init';
 
 const Orders = () => {
     const [user] = useAuthState(auth);
     const [orders, setOrders] = useState([]);
+    const navigate = useNavigate()
     useEffect(() => {
         const getOrders = async () => {
-            const email = user.email;
-            const url = `http://localhost:4000/orders?email=${email}`;
-            const { data } = await axios.get(url, {
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            const email = user?.email;
+            const url = `https://polar-badlands-98264.herokuapp.com/orders?email=${email}`;
+            try {
+                const { data } = await axiosPrivate.get(url);
+                setOrders(data);
+            }
+            catch (error) {
+                console.log(error.message)
+                if (error.response.status === 401 || error.response.status === 403) {
+                    signOut(auth)
+                    navigate('/login')
                 }
-            });
-            setOrders(data);
+            }
         }
         getOrders();
     }, [user])
     return (
-        <div className='container text-center my-5'>
+        <div className='container w-50 text-center my-5'>
             <h3>Your orders summary: {orders.length}</h3>
+            {
+                orders.map(order => <div key={order._id}>
+                    <p>{order.email} : {order.service}</p>
+                </div>)
+            }
         </div>
     );
 };
